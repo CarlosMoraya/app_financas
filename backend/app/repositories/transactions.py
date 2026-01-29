@@ -31,7 +31,7 @@ class TransactionRepository:
         return result.scalar_one_or_none()
 
     async def create(self, user_id: UUID, obj_in: TransactionCreate) -> Transaction:
-        txn = Transaction(user_id=user_id, account_id=obj_in.account_id, type=obj_in.type, amount=obj_in.amount, date=obj_in.date, description=obj_in.description, category_id=obj_in.category_id, merchant=obj_in.merchant, metadata={'tags': obj_in.tags} if obj_in.tags else None)
+        txn = Transaction(user_id=user_id, account_id=obj_in.account_id, type=obj_in.type, amount=obj_in.amount, date=obj_in.date, description=obj_in.description, category_id=obj_in.category_id, merchant=obj_in.merchant, tx_metadata={'tags': obj_in.tags} if obj_in.tags else None)
         self.session.add(txn)
         await self.session.commit()
         await self.session.refresh(txn)
@@ -43,7 +43,7 @@ class TransactionRepository:
             return None
         for field, value in obj_in.model_dump(exclude_unset=True).items():
             if field == 'tags':
-                setattr(txn, 'metadata', {'tags': value} if value else None)
+                setattr(txn, 'tx_metadata', {'tags': value} if value else None)
             else:
                 setattr(txn, field, value)
         await self.session.commit()

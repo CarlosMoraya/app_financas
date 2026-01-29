@@ -15,6 +15,6 @@ class Transaction(Base):
     description = Column(String, nullable=True)
     category_id = Column(Integer, ForeignKey('categories.id', ondelete='SET NULL'), nullable=True)
     merchant = Column(String, nullable=True)
-    metadata = Column(JSON, nullable=True)
+    tx_metadata = Column('metadata', JSON, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
