@@ -98,25 +98,7 @@ export default function Login() {
               )}
             </button>
 
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Ou</span>
-              </div>
-            </div>
 
-            <button
-              type="button"
-              onClick={() => {
-                localStorage.setItem('preview_mode', 'true')
-                router.push('/dashboard')
-              }}
-              className="w-full border-2 border-indigo-600 text-indigo-600 py-3 rounded-lg font-medium hover:bg-indigo-50 transition-colors"
-            >
-              🎨 Entrar em Modo Preview
-            </button>
 
             <p className="text-center text-sm text-gray-600 mt-6">
               Não tem uma conta?{' '}
